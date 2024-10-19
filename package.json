@@ -1,0 +1,77 @@
+{
+  "name": "task-management-system",
+  "version": "1.0.0",
+  "description": "This project will involve creating a full-featured backend using Node.js, Express, and Sequelize, implementing CRUD operations, user authentication, and handling file uploads.",
+  "main": "index.js",
+  "scripts": {
+    "build": "rimraf ./build && tsc && tscp",
+    "lint": "esw --ext .json,.ts, src --color",
+    "lint:fix": "eslint src --ext .json,.ts, --fix",
+    "pre-commit": "npm run lint",
+    "start": "node ./build/index.js",
+    "dev": "nodemon src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cloudinary": "^2.5.1",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-rate-limit": "^7.4.1",
+    "express-validator": "^7.2.0",
+    "ioredis": "^5.4.1",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "moment": "^2.30.1",
+    "nodemailer": "^6.9.15",
+    "pg": "^8.13.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.4",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.12.0",
+    "@types/bcrypt": "^5.0.2",
+    "@types/express": "^5.0.0",
+    "@types/express-validator": "^2.20.33",
+    "@types/joi": "^17.2.2",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/node": "^22.7.6",
+    "@types/nodemailer": "^6.4.16",
+    "@types/sequelize": "^4.28.20",
+    "@types/uuid": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^18.0.0",
+    "eslint-plugin-eslint-plugin": "^6.2.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-json": "^4.0.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^7.1.0",
+    "eslint-plugin-security": "^3.0.1",
+    "eslint-plugin-typescript-sort-keys": "^3.3.0",
+    "eslint-watch": "^8.0.0",
+    "globals": "^15.11.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "nodemon": "^3.1.7",
+    "sequelize-cli": "^6.6.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "node": "20.17.0",
+    "npm": "10.8.2"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix"
+    ]
+  }
+}
