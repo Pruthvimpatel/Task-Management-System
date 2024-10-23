@@ -29,11 +29,11 @@ export default class AccessToken
   declare userId: ForeignKey<User['id']>;
   declare expiredAt: Date;
 
-  // Static method for defining associations
+ 
   static associate: (models: typeof db) => void;
 }
 
-// Initialize the AccessToken model
+
 export const accessToken = (
   sequelize: Sequelize.Sequelize,
   DataTypes: typeof Sequelize.DataTypes,
@@ -78,7 +78,7 @@ export const accessToken = (
     },
   );
 
-  // Define associations (if any)
+ 
   AccessToken.associate = models => {
     AccessToken.belongsTo(models.User, {
       foreignKey: 'user_id',

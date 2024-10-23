@@ -32,11 +32,10 @@ export default class Task
   declare status?: Status;
   declare sharedUsers?: TaskShare[];
 
-  // Static method for defining associations
   static associate: (models: typeof db) => void;
 }
 
-// Initialize the Task model
+
 export const task = (
   sequelize: Sequelize.Sequelize,
   DataTypes: typeof Sequelize.DataTypes,

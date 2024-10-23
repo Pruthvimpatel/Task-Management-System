@@ -34,7 +34,7 @@ export const registerUser = asyncHandler(async(req:Request,res:Response,next:Nex
     
 //User-Login
 export const loginUser = asyncHandler(async(req:Request,res:Response,next:NextFunction) => {
-    const {email,password} = req.body;
+    const {email,password,role} = req.body;
   
     if (!email || !password) {
       return next(new ApiError(400, ERROR_MESSAGES.EMAIL_AND_PASSWORD_REQUIRED));
@@ -46,10 +46,22 @@ export const loginUser = asyncHandler(async(req:Request,res:Response,next:NextFu
       {
           return next(new ApiError(404, ERROR_MESSAGES.USER_NOT_FOUND)); 
       }
+   
       const isMatch = await bcrypt.compare(password,user.password);
       if (!isMatch) {
           return next(new ApiError(401, ERROR_MESSAGES.INVALID_CREDENTIALS));
         };
+
+        await db.AccessToken.destroy({
+            where: {
+                userId: user.id,
+                tokenType: 'ACCESS'
+            }
+        })
+         
+        if (role && user.role !== role) {
+            return next(new ApiError(403, ERROR_MESSAGES.FORBIDDEN_ROLE));
+        } 
       const accessToken = generateAccessToken({userId:user.id,email:user.email});
       const refreshToken = generateRefreshToken({ userId: user.id });
       

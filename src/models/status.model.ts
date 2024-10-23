@@ -19,11 +19,11 @@ export default class Status
   declare id: CreationOptional<string>;
   declare status: TaskStatus;
 
-  // Static method for defining associations
+ 
   static associate: (models: typeof db) => void;
 }
 
-// Initialize the Status model
+
 export const status = (
   sequelize: Sequelize.Sequelize,
   DataTypes: typeof Sequelize.DataTypes,

@@ -3,34 +3,34 @@ import Sequelize, { CreationOptional, ForeignKey, Model } from 'sequelize';
 import db from '../sequelize-client';
 
 import Task from './task.model';
-import User from './user.model';
 
-export interface TaskShareAttributes {
-    id?: string;
+export interface ReminderModelCreationAttributes {
     taskId: string;
-    userId: string;
+    reminderDate: Date;
 }
 
-export default class TaskShare
-  extends Model<TaskShareAttributes>
-  implements TaskShareAttributes
+export interface ReminderModelAttributes
+    extends ReminderModelCreationAttributes {
+    id: string;
+}
+
+export default class Reminder
+  extends Model<ReminderModelAttributes, ReminderModelCreationAttributes>
+  implements ReminderModelAttributes
 {
   declare id: CreationOptional<string>;
   declare taskId: ForeignKey<Task['id']>;
-  declare userId: ForeignKey<User['id']>;
+  declare reminderDate: Date;
 
-  declare user?: User;
-
- 
+  declare task?: Task;
   static associate: (models: typeof db) => void;
 }
 
-
-export const taskShare = (
+export const reminder = (
   sequelize: Sequelize.Sequelize,
   DataTypes: typeof Sequelize.DataTypes,
 ) => {
-  TaskShare.init(
+  Reminder.init(
     {
       id: {
         type: DataTypes.UUID,
@@ -42,26 +42,24 @@ export const taskShare = (
         allowNull: false,
         field: 'task_id',
       },
-      userId: {
-        type: DataTypes.UUID,
-        allowNull: false,
-        field: 'user_id',
+      reminderDate: {
+        type: DataTypes.DATE,
+        allowNull: true,
       },
     },
     {
       sequelize,
       underscored: true,
       timestamps: true,
-      modelName: 'TaskShare',
-      tableName: 'task_shares',
+      modelName: 'Reminder',
+      tableName: 'reminders',
       paranoid: true,
     },
   );
 
-  TaskShare.associate = models => {
-    TaskShare.belongsTo(models.Task, { foreignKey: 'taskId', as: 'task' });
-    TaskShare.belongsTo(models.User, { foreignKey: 'userId', as: 'user' });
+  Reminder.associate = models => {
+    Reminder.belongsTo(models.Task, { foreignKey: 'taskId', as: 'task' });
   };
 
-  return TaskShare;
+  return Reminder;
 };

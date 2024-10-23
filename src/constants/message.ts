@@ -21,6 +21,12 @@ export const ERROR_MESSAGES = {
      TASK_ID_REQUIRED: 'Task ID is required',
      TASKS_FETCHED_SUCCESSFULLY:'Tasks fetched successfully',
      SUB_TASK_NOT_FOUND: 'Subtask not found',
+     FORBIDDEN_ACCESS: 'You do not  have permission to access this',
+     NO_SHARED_TASKS_FOUND: 'No shared tasks found',
+     MISSING_TASK_ID_OR_USER_ID: 'Missing task ID or user ID',
+     INVALID_TASK_ID_FORMAT: 'Invalid task ID format',
+     REMINDER_NOT_FOUND: 'Reminder not found'
+     
   };
   
   export const SUCCESS_MESSAGES = {
@@ -36,5 +42,12 @@ export const ERROR_MESSAGES = {
     SUBTASK_DELETED_SUCCESSFULLY: 'Status deleted successfully',
     SUBTASK_RETRIEVED_SUCCESSFULLY: 'Statuses retrieved successfully',
     SUBTASK_ASSIGNED_SUCCESSFULLY: 'Task assigned successfully',
-
+    TASK_STATUS_UPDATED_SUCCESSFULLY: 'Task status updated successfully',
+    TASK_DUE_DATE_SET_SUCCESSFULLY: 'Task due date set successfully',
+    TASK_SHARED_SUCCESSFULLY: 'Task shared successfully',
+    TASK_MOVED_SUCCESSFULLY: 'Task moved successfully',
+    TASK_FILTERED_SUCCESSFULLY: 'Tasks filtered successfully',
+    TASK_ASSIGNED_SUCCESSFULLY: 'Task assigned successfully',
+    REMINDER_CREATED: 'Reminder created successfully',
+    REMINDER_UPDATED: 'Reminder updated successfully',
   };

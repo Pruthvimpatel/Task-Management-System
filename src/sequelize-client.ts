@@ -9,6 +9,7 @@ import {task} from './models/task.model';
 import {status} from './models/status.model';
 import {subtask} from './models/subtask.model';
 import {taskShare} from './models/share-task.model';
+import {reminder} from './models/reminder.model'
 
 const env = process.env.NODE_ENV || 'development';
 
@@ -32,6 +33,7 @@ const db = {
      Status: status(sequelize,DataTypes),
      SubTask: subtask(sequelize,DataTypes),
      TaskShare: taskShare(sequelize,DataTypes),
+     Reminder: reminder(sequelize,DataTypes),
 
      models: sequelize.models
 };

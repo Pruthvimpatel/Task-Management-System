@@ -23,7 +23,6 @@ export const generateRefreshToken = (payload: { userId: string }): string => {
     );
   };
 
-
   export const generateResetToken = (payload: { userId: string }): string => {
     return jwt.sign(
       payload,

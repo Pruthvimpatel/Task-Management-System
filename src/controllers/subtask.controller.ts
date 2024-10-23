@@ -17,6 +17,7 @@ interface MyUserRequest extends Request {
     user?: User;
  };
 
+ // create sub-task
  export const createSubtask = asyncHandler(async (req: MyUserRequest, res: Response, next: NextFunction) => {
     const { title, description, statusId, dueDate,taskId } = req.body;
     const user = req.user;
@@ -51,3 +52,43 @@ interface MyUserRequest extends Request {
         return next(new ApiError(500, ERROR_MESSAGES.INTERNAL_SERVER_ERROR, [error]));
     }
 });
+
+
+//assign sub-task
+export const assignSubtask = asyncHandler(async(req: MyUserRequest,res: Response,next: NextFunction) => {
+    const {taskId,subtaskId} = req.body;
+    const user = req.user;
+
+    if(!user) {
+        return next(new ApiError(400, ERROR_MESSAGES.USER_NOT_FOUND));
+    }
+
+    try {
+
+const task = await db.Task.findOne({
+    where: {
+        id: taskId,
+        userId: user.id
+    }
+})
+
+if(!task) {
+    return next(new ApiError(404, ERROR_MESSAGES.TASK_NOT_FOUND));
+}
+
+const subtask = await db.SubTask.findByPk(subtaskId);
+   if(!subtask) {
+    return next(new ApiError(404, ERROR_MESSAGES.SUB_TASK_NOT_FOUND));
+    }
+
+    await subtask.update({taskId})
+    const response = new ApiResponse(200, { subtask }, SUCCESS_MESSAGES.SUBTASK_ASSIGNED_SUCCESSFULLY);
+    res.status(200).json(response);
+} catch(error) {
+    console.error(ERROR_MESSAGES.SOMETHING_ERROR,error);
+    return next(new ApiError(500, ERROR_MESSAGES.INTERNAL_SERVER_ERROR,[error]));
+}
+});
+
+
+

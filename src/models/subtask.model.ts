@@ -28,11 +28,11 @@ export default class SubTask
   declare taskId: ForeignKey<Task['id']>;
   declare dueDate?: Date;
 
-  // Static method for defining associations
+  
   static associate: (models: typeof db) => void;
 }
 
-// Initialize the Task model
+
 export const subtask = (
   sequelize: Sequelize.Sequelize,
   DataTypes: typeof Sequelize.DataTypes,
