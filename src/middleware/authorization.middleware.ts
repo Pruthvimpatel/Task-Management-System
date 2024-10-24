@@ -8,6 +8,7 @@ interface MyUserRequest extends Request {
     user?: User;
 }
 
+
 export const authorizeRole = (allowedRoles: string[]) => {
   return (req: MyUserRequest, res: Response, next: NextFunction) => {
     const user = req.user;

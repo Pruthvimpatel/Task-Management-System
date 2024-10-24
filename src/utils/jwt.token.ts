@@ -21,7 +21,7 @@ export const generateRefreshToken = (payload: { userId: string }): string => {
       config.JWT.SECRET,
       { expiresIn: process.env.REFRESH_EXPIRATION_TIME } 
     );
-  };
+};
 
   export const generateResetToken = (payload: { userId: string }): string => {
     return jwt.sign(
